@@ -1,0 +1,33 @@
+<h2>Productos</h2>
+
+<nz-table #table [nzData]="products" nzBordered>
+  <thead>
+    <tr>
+      <th nzWidth="50px">ID</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th nzWidth="120px">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let p of table.data">
+      <td>{{ p.id }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.price | currency }}</td>
+      <td>{{ p.stock }}</td>
+      <td>
+        <button 
+  nz-button 
+  nzType="primary" 
+  nzDanger 
+  *ngIf="p.id !== undefined" 
+  (click)="delete(p.id!)">
+  Eliminar
+</button>
+
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

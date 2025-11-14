@@ -1,0 +1,30 @@
+<h2>Agregar producto</h2>
+
+<form nz-form [formGroup]="form" (ngSubmit)="save()">
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">Nombre</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input formControlName="name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">Precio</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input type="number" formControlName="price" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">Stock</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input type="number" formControlName="stock" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <button nz-button nzType="primary" [disabled]="form.invalid">
+    Guardar
+  </button>
+
+</form>
