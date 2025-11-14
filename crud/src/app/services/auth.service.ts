@@ -6,10 +6,14 @@ import { supabase } from '../Supabase/supabase.client';
 })
 export class AuthService {
 
+  private isBrowser = typeof window !== 'undefined';
+
   constructor() {}
 
-  // 👉 LOGIN
+  // LOGIN
   async login(email: string, password: string) {
+    if (!this.isBrowser) return null; // SSR safe
+
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password
@@ -19,19 +23,24 @@ export class AuthService {
     return data.session;
   }
 
-  // 👉 LOGOUT
+  // LOGOUT
   async logout() {
+    if (!this.isBrowser) return;
     await supabase.auth.signOut();
   }
 
-  // 👉 OBTENER SESIÓN ACTUAL
+  // OBTENER SESIÓN
   async getSession() {
+    if (!this.isBrowser) return null;
+
     const { data } = await supabase.auth.getSession();
     return data.session;
   }
 
-  // 👉 OBTENER USUARIO
+  // OBTENER USUARIO
   async getUser() {
+    if (!this.isBrowser) return null;
+
     const { data } = await supabase.auth.getUser();
     return data.user;
   }

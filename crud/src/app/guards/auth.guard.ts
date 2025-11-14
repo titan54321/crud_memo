@@ -10,14 +10,17 @@ export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
 
 async canActivate(): Promise<boolean> {
-  const session = await this.auth.getSession();
+const session = await this.auth.getSession();
 
-  if (session) {
-    return true;
-  }
+if (session) return true;
 
-  this.router.navigate(['login']); // OJO: sin slash
-  return false;
+// redirigir SOLO en navegador
+if (typeof window !== 'undefined') {
+  this.router.navigate(['/login']);
 }
 
+return false;
+
+
 }
+};

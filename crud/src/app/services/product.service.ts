@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { supabase } from '../Supabase/supabase.client';
-
+import { AuthService } from './auth.service';
 
 export interface Product {
   id?: number;
@@ -14,12 +14,17 @@ export interface Product {
 })
 export class ProductService {
 
-  constructor() {}
+  constructor(private auth: AuthService) {}
 
   async getProducts(): Promise<Product[]> {
+
+    const user = await this.auth.getUser();
+    if (!user) throw new Error("Usuario no autenticado");
+
     const { data, error } = await supabase
       .from('product')
       .select('*')
+      .eq('user_id', user.id)
       .order('id', { ascending: true });
 
     if (error) throw error;
@@ -27,9 +32,16 @@ export class ProductService {
   }
 
   async addProduct(product: Product) {
+
+    const user = await this.auth.getUser();
+    if (!user) throw new Error("Usuario no autenticado");
+
     const { data, error } = await supabase
       .from('product')
-      .insert(product)
+      .insert({
+        ...product,
+        user_id: user.id    // 👈 OBLIGATORIO
+      })
       .select();
 
     if (error) throw error;
@@ -37,9 +49,16 @@ export class ProductService {
   }
 
   async updateProduct(id: number, product: Product) {
+
+    const user = await this.auth.getUser();
+    if (!user) throw new Error("Usuario no autenticado"); //Con este if comprobamos que el usuario no lo mande como null
+
     const { data, error } = await supabase
       .from('product')
-      .update(product)
+      .update({
+        ...product,
+        user_id: user.id
+      })
       .eq('id', id)
       .select();
 
