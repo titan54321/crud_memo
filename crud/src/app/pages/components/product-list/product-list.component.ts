@@ -63,6 +63,7 @@ export class ProductListComponent implements OnInit {
 
   /** 🔵 ABRIR MODAL Y CARGAR DATOS */
 openEdit(product: Product) {
+   console.log("PRODUCTO RECIBIDO:", product);
   this.currentId = product.id!;
 
   this.editForm.patchValue({

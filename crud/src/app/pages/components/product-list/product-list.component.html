@@ -45,29 +45,30 @@
   nzOkText="Guardar Cambios"
   nzCancelText="Cancelar"
 >
-  <form nz-form [formGroup]="editForm">
+  <div *nzModalContent>
+    <form nz-form [formGroup]="editForm">
 
-    <nz-form-item>
-      <nz-form-label [nzSpan]="6">Nombre</nz-form-label>
-      <nz-form-control [nzSpan]="14">
-        <input nz-input formControlName="name" />
-      </nz-form-control>
-    </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">Nombre</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+          <input nz-input formControlName="name" />
+        </nz-form-control>
+      </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSpan]="6">Precio</nz-form-label>
-      <nz-form-control [nzSpan]="14">
-        <input nz-input type="number" formControlName="price" />
-      </nz-form-control>
-    </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">Precio</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+          <input nz-input type="number" formControlName="price" />
+        </nz-form-control>
+      </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-label [nzSpan]="6">Stock</nz-form-label>
-      <nz-form-control [nzSpan]="14">
-        <input nz-input type="number" formControlName="stock" />
-      </nz-form-control>
-    </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">Stock</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+          <input nz-input type="number" formControlName="stock" />
+        </nz-form-control>
+      </nz-form-item>
 
-  </form>
+    </form>
+  </div>
 </nz-modal>
-

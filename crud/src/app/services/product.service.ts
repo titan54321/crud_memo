@@ -34,7 +34,8 @@ export class ProductService {
   async addProduct(product: Product) {
 
     const user = await this.auth.getUser();
-    if (!user) throw new Error("Usuario no autenticado");
+    if (!user) throw new Error("Usuario no autenticado");//Con este if comprobamos que el usuario no lo mande como null
+
 
     const { data, error } = await supabase
       .from('product')
@@ -48,23 +49,30 @@ export class ProductService {
     return data;
   }
 
-  async updateProduct(id: number, product: Product) {
+async updateProduct(id: number, product: Product) {
 
-    const user = await this.auth.getUser();
-    if (!user) throw new Error("Usuario no autenticado"); //Con este if comprobamos que el usuario no lo mande como null
+  const user = await this.auth.getUser();
+  if (!user) throw new Error("Usuario no autenticado");
 
-    const { data, error } = await supabase
-      .from('product')
-      .update({
-        ...product,
-        user_id: user.id
-      })
-      .eq('id', id)
-      .select();
+  const { data, error } = await supabase
+    .from('product')
+    .update({
+      name: product.name,
+      price: product.price,
+      stock: product.stock
+    })
+    .eq('id', id)
+    .eq('user_id', user.id) // ✔ asegura propiedad
+    .select();
 
-    if (error) throw error;
-    return data;
+  if (error) {
+    console.error("ERROR UPDATE:", error);
+    throw error;
   }
+
+  return data;
+}
+
 
   async deleteProduct(id: number) {
     const { error } = await supabase
