@@ -40,9 +40,24 @@
 
         </ul>
       </li>
-
+ <div class="topbar-right">
+    <button
+      nz-button
+      nzType="default"
+      nzShape="round"
+      class="logout-btn"
+      (click)="logout()"
+    >
+      <span nz-icon nzType="logout"></span>
+      Cerrar sesión
+    </button>
+  </div>
     </ul>
+
+   
   </nz-sider>
+
+  
 
   <nz-layout>
     <nz-content>
@@ -52,3 +67,5 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
+
+  
