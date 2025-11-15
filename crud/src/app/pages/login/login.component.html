@@ -1,0 +1,24 @@
+<div class="login-container">
+  <nz-card nzTitle="Iniciar sesión" nzBordered="true" style="width: 350px;">
+    <form [formGroup]="form" (ngSubmit)="login()">
+      
+      <nz-form-item>
+        <nz-form-label>Email</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="email" formControlName="email" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label>Contraseña</nz-form-label>
+        <nz-form-control>
+          <input nz-input type="password" formControlName="password" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <button nz-button nzType="primary" nzBlock [disabled]="form.invalid">
+        Entrar
+      </button>
+    </form>
+  </nz-card>
+</div>

@@ -1,0 +1,71 @@
+<nz-layout class="app-layout">
+  <nz-sider nzCollapsible nzWidth="256px" nzTheme="light">
+    <div class="sidebar-logo">
+      <img src="https://universidadesdemexico.mx/logos/original/logo-instituto-tecnologico-de-la-piedad.webp" />
+      <h1>Web Creada por Angel y Juan Luis</h1>
+    </div>
+
+    <ul nz-menu nzTheme="light" nzMode="inline">
+
+      <!-- INICIO -->
+      <li nz-submenu nzOpen nzTitle="Inicio" nzIcon="dashboard">
+        <ul>
+
+          <!-- PRODUCTOS -->
+          <a
+            nz-menu-item
+            routerLink="/products"
+            routerLinkActive="active-menu-item"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Productos
+          </a>
+
+        </ul>
+      </li>
+
+
+      <!-- AGREGAR -->
+      <li nz-submenu nzOpen nzTitle="Agregar" nzIcon="form">
+        <ul>
+
+          <a
+            nz-menu-item
+            routerLink="/add-product"
+            routerLinkActive="active-menu-item"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Agregar Producto
+          </a>
+
+        </ul>
+      </li>
+ <div class="topbar-right">
+    <button
+      nz-button
+      nzType="default"
+      nzShape="round"
+      class="logout-btn"
+      (click)="logout()"
+    >
+      <span nz-icon nzType="logout"></span>
+      Cerrar sesión
+    </button>
+  </div>
+    </ul>
+
+   
+  </nz-sider>
+
+  
+
+  <nz-layout>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+
+  

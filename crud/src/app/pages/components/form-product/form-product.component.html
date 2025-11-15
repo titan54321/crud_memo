@@ -1,0 +1,36 @@
+<h2>Agregar producto</h2>
+
+<form nz-form [formGroup]="form" (ngSubmit)="onSubmit()">
+ <!-- Input para agregar el nombre del Producto -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">Nombre</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input formControlName="name" />
+    </nz-form-control>
+  </nz-form-item>
+<!-- Input para agregar el Precio -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">Precio</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input type="number" formControlName="price" />
+          <div class="error" *ngIf="form.controls['price'].invalid && form.controls['price'].touched">
+                 Precio obligatorio y debe ser mayor a 0
+          </div>
+    </nz-form-control>
+  </nz-form-item>
+ <!-- Input para agregar el Stock -->
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">Stock</nz-form-label>
+    <nz-form-control [nzSpan]="14">
+      <input nz-input type="number" formControlName="stock" />
+        <div class="error" *ngIf="form.controls['stock'].invalid && form.controls['stock'].touched">
+            Stock obligatorio y debe ser mayor a 0
+        </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <button nz-button nzType="primary" [disabled]="form.invalid" type="submit">
+    Guardar
+  </button>
+
+</form>
