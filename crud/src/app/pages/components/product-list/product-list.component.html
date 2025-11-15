@@ -7,7 +7,7 @@
       <th>Nombre</th>
       <th>Precio</th>
       <th>Stock</th>
-      <th nzWidth="120px">Acciones</th>
+      <th nzWidth="160px">Acciones</th>
     </tr>
   </thead>
 
@@ -17,17 +17,57 @@
       <td>{{ p.name }}</td>
       <td>{{ p.price | currency }}</td>
       <td>{{ p.stock }}</td>
-      <td>
-        <button 
-  nz-button 
-  nzType="primary" 
-  nzDanger 
-  *ngIf="p.id !== undefined" 
-  (click)="delete(p.id!)">
-  Eliminar
-</button>
+   <td class="actions-cell">
+  <button nz-button nzType="default" nzShape="circle" nzSize="small"
+          nzTooltipTitle="Editar"
+          (click)="openEdit(p)">
+    <span nz-icon nzType="edit"></span>
+  </button>
 
-      </td>
+  <button nz-button nzType="default" nzDanger nzShape="circle" nzSize="small"
+          nzTooltipTitle="Eliminar"
+          (click)="delete(p.id!)">
+    <span nz-icon nzType="delete"></span>
+  </button>
+</td>
+
     </tr>
   </tbody>
 </nz-table>
+
+
+<!-- 🔹 MODAL EDITAR PRODUCTO -->
+<nz-modal
+  [(nzVisible)]="isEditVisible"
+  nzTitle="Editar Producto"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="updateProduct()"
+  nzOkText="Guardar Cambios"
+  nzCancelText="Cancelar"
+>
+  <form nz-form [formGroup]="editForm">
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Nombre</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input nz-input formControlName="name" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Precio</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input nz-input type="number" formControlName="price" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6">Stock</nz-form-label>
+      <nz-form-control [nzSpan]="14">
+        <input nz-input type="number" formControlName="stock" />
+      </nz-form-control>
+    </nz-form-item>
+
+  </form>
+</nz-modal>
+

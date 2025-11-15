@@ -1,0 +1,12 @@
+.actions-cell {
+  display: flex;
+  justify-content: center;     /* Centra horizontalmente */
+  align-items: center;         /* Centra verticalmente */
+  gap: 10px;                   /* Espacio entre íconos */
+}
+
+.actions-cell button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
